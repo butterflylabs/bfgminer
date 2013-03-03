@@ -22,6 +22,13 @@
 #include "logging.h"
 #include "util.h"
 
+#ifdef __BIONIC__
+    # define be32toh betoh32
+    # define le32toh letoh32
+    # define be64toh betoh64
+    # define le64toh letoh64
+#endif
+
 #ifdef HAVE_OPENCL
 #include "CL/cl.h"
 #endif /* HAVE_OPENCL */

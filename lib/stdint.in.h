@@ -28,6 +28,11 @@
 #endif
 @PRAGMA_COLUMNS@
 
+#if defined __BIONIC__ \
+    && defined _SYS_TYPES_H_ && !defined _SSIZE_T_DEFINED_
+# @INCLUDE_NEXT@ @NEXT_STDINT_H@
+#else
+
 /* When including a system file that in turn includes <inttypes.h>,
    use the system <inttypes.h>, not our substitute.  This avoids
    problems with (for example) VMS, whose <sys/bitypes.h> includes
@@ -589,4 +594,5 @@ typedef int _verify_intmax_size[sizeof (intmax_t) == sizeof (uintmax_t)
 #endif /* !defined __cplusplus || defined __STDC_CONSTANT_MACROS */
 
 #endif /* _@GUARD_PREFIX@_STDINT_H */
+#endif
 #endif /* !defined _@GUARD_PREFIX@_STDINT_H && !defined _GL_JUST_INCLUDE_SYSTEM_STDINT_H */
